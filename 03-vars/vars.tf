@@ -74,4 +74,9 @@ output "course_details" {
   value = var.course_details
 
 }
+variable "env" {}
+
+output "env" {
+  value = var.env
+}
 
