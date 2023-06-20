@@ -1,8 +1,7 @@
 resource "aws_instance" "web" {
   ami           = data.aws_ami.example.id
-  instance_type = "t3.small"
+  instance_type = "t3.micro"
   vpc_security_group_ids = [aws_security_group.sg.id]
-
   tags = {
     Name = var.name
   }
@@ -12,15 +11,16 @@ resource "aws_instance" "web" {
       type     = "ssh"
       user     = "centos"
       password = "DevOps321"
-      host     = aws_instance.web.public_ip
+      host     = self.public_ip
     }
 
     inline = [
       "sudo labauto ansible",
-      "ansible-pull -i localhost, -U https://github.com/Ramthatigutla/roboshop-ansible.git main.yml -e env=dev -e role_name=${var.name}"
+      "ansible-pull -i localhost, -U https://github.com/ramthatigutla/roboshop-ansible main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
 }
+
 resource "aws_route53_record" "www" {
   zone_id = "Z01993782D642NRX02CFC"
   name    = "${var.name}-dev"
@@ -28,6 +28,7 @@ resource "aws_route53_record" "www" {
   ttl     = 30
   records = [aws_instance.web.private_ip]
 }
+
 data "aws_ami" "example" {
   owners      = ["973714476881"]
   most_recent = true
@@ -41,7 +42,7 @@ resource "aws_security_group" "sg" {
   ingress {
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -50,7 +51,6 @@ resource "aws_security_group" "sg" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-
   }
 
   tags = {
@@ -59,3 +59,4 @@ resource "aws_security_group" "sg" {
 }
 
 variable "name" {}
+
