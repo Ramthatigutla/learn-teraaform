@@ -7,28 +7,11 @@ module "mongodb" {
   name = "mongodb"
 }
 
-module "catlogue" {
+module "catalogue" {
   source= "./ec2"
-  name = "catlogue"
+  name = "catalogue"
 }
 
-
-module "cart" {
-  source= "./ec2"
-  name = "cart"
-}
-
-
-module "shipping" {
-  source= "./ec2"
-  name = "shipping"
-}
-
-
-module "payment" {
-  source= "./ec2"
-  name = "payment"
-}
 module "redis" {
   source= "./ec2"
   name = "redis"
@@ -39,13 +22,28 @@ module "user" {
   name = "user"
 }
 
+module "cart" {
+  source= "./ec2"
+  name = "cart"
+}
 module "mysql" {
   source= "./ec2"
   name = "mysql"
 }
+
+module "shipping" {
+  source= "./ec2"
+  name = "shipping"
+}
+
 module "rabbitmq" {
   source= "./ec2"
   name = "rabbitmq"
+}
+
+module "payment" {
+  source= "./ec2"
+  name = "payment"
 }
 
 
