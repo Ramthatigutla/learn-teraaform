@@ -31,9 +31,9 @@ output "devops_topics" {
   value = var.classes["devops"]["topics"]
 }
 
-output "aws_topics" {
-  value = lookup(lookup(var.classes, "aws", null), "topics", "No Topics So far")
-}
+//output "aws_topics" {
+  //value = lookup(lookup(var.classes, "aws", null), "topics", "No Topics So far")
+//}
 
 //output "aws_topics" {
   //value = lookup(lookup(var.classes, "aws", null), "topics", null) == null ? "No AWS Training So far" : lookup(lookup(var.classes, "aws", null), "topics", null)
@@ -41,4 +41,11 @@ output "aws_topics" {
 
 output "fruit_4" {
   value = element(var.fruits, 4)
+}
+variable "a" {
+  default = 100
+}
+
+output "a" {
+  value = var.a > 50  ? "Surplus Quantity" : "Less Quantity"
 }
