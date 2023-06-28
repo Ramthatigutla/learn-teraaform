@@ -1,10 +1,10 @@
 resource "aws_instance" "web" {
-  for_each      = var.instances
-  ami           = data.aws_ami.example.id
-  instance_type = "t3.small"
+  for_each = var.instances
+  ami = data.aws_ami.example.id
+  instance_type = "t3.micro"
 
   tags = {
-    Name = hi
+    Name = "hi"
   }
 }
 
