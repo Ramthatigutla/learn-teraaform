@@ -1,4 +1,4 @@
-variable "class"{
+variable "class" {
   default = "devops"
 }
 
