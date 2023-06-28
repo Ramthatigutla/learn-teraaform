@@ -35,9 +35,9 @@ output "aws_topics" {
   value = lookup(lookup(var.classes, "aws", null), "topics", "No Topics So far")
 }
 
-output "aws_topics" {
-  value = lookup(lookup(var.classes, "aws", null), "topics", null) == null ? "No AWS Training So far" : lookup(lookup(var.classes, "aws", null), "topics", null)
-}
+//output "aws_topics" {
+  //value = lookup(lookup(var.classes, "aws", null), "topics", null) == null ? "No AWS Training So far" : lookup(lookup(var.classes, "aws", null), "topics", null)
+//}
 
 output "fruit_4" {
   value = element(var.fruits, 4)
